@@ -1,32 +1,32 @@
-var entireSchedule = [];
-var btnNineEl = $("#btn-nine");
-// console.log(typeof(btnNineEl));
-var txtNine = $("#txt-nine");
-// var txtNine = document.getElementById("txt-nine");
-
-btnNineEl.on("click", function() {
-
-  var hourNine = {
-    hour: this.id,
-    text: txtNine.val()
-  }
-
-  entireSchedule.push(hourNine);
-  localStorage.setItem("localSchedule", JSON.stringify(entireSchedule))
-  
-})
+var buttonsAll = $(".saveBtn")
+var textAreaAll = document.querySelectorAll(".description");
+var workHours = 8
+var savedSchedule = {};
 
 
 
-// $(function () {
+buttonsAll.on("click", function(event) {
 
-// });
+  event.preventDefault();
+
+  var buttonId = this.id;
+  var textEntry = this.previousElementSibling.value;
+        
+  savedSchedule["hour"+buttonId] = textEntry;
+
+  localStorage.setItem("localSchedule", JSON.stringify(savedSchedule))
+
+});
 
 
+
+//INSTRUCTIONS GIVEN:
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
+// $(function () {
+// });
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
