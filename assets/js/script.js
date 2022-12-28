@@ -1,8 +1,27 @@
 var buttonsAll = $(".saveBtn")
 var textAreaAll = document.querySelectorAll(".description");
-var workHours = 8
 var savedSchedule = {};
 
+console.log(typeof(textAreaAll));
+
+var today = dayjs();
+$('#currentDay').text(today.format('dddd, MMM DD, YYYY'));
+
+var currentHour = dayjs().hour();
+
+
+for (var i = 0; i < textAreaAll.length; i++) {
+  if (textAreaAll[i].id < currentHour) {
+    textAreaAll[i].classList.add("past");
+    console.log("I am in the past.");
+  } else if (textAreaAll[i].id == currentHour) {
+    textAreaAll[i].classList.add("present");
+    console.log("I am in the present.");
+  } else {
+    textAreaAll[i].classList.add("future");
+    console.log("I am in the future.");
+  }
+}
 
 
 buttonsAll.on("click", function(event) {
@@ -17,7 +36,6 @@ buttonsAll.on("click", function(event) {
   localStorage.setItem("localSchedule", JSON.stringify(savedSchedule))
 
 });
-
 
 
 //INSTRUCTIONS GIVEN:
