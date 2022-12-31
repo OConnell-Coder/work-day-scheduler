@@ -2,26 +2,34 @@ var buttonsAll = $(".saveBtn")
 var textAreaAll = document.querySelectorAll(".description");
 var savedSchedule = {};
 
-console.log(typeof(textAreaAll));
 
+function liveClock() {
 var today = dayjs();
-$('#currentDay').text(today.format('dddd, MMM DD, YYYY'));
+$('#currentDay').text(today.format('dddd, MMM DD, YYYY hh:mm:ss A'));
+};
+liveClock();
+setInterval(liveClock, 1000);
 
 var currentHour = dayjs().hour();
 
 
-for (var i = 0; i < textAreaAll.length; i++) {
-  if (textAreaAll[i].id < currentHour) {
-    textAreaAll[i].classList.add("past");
-    console.log("I am in the past.");
-  } else if (textAreaAll[i].id == currentHour) {
-    textAreaAll[i].classList.add("present");
-    console.log("I am in the present.");
-  } else {
-    textAreaAll[i].classList.add("future");
-    console.log("I am in the future.");
+function changeColor() {
+  for (var i = 0; i < textAreaAll.length; i++) {
+    if (Number(textAreaAll[i].id) < currentHour) {
+      textAreaAll[i].classList.remove("past", "present", "future");
+      textAreaAll[i].classList.add("past");
+    } else if (Number(textAreaAll[i].id) === currentHour) {
+      textAreaAll[i].classList.remove("past", "present", "future");
+      textAreaAll[i].classList.add("present");
+    } else {
+      textAreaAll[i].classList.remove("past", "present", "future");
+      textAreaAll[i].classList.add("future");
+    }
   }
-}
+};
+
+changeColor();
+setInterval(changeColor, 60000);
 
 
 buttonsAll.on("click", function(event) {
@@ -33,10 +41,13 @@ buttonsAll.on("click", function(event) {
         
   savedSchedule["hour"+buttonId] = textEntry;
 
-  localStorage.setItem("localSchedule", JSON.stringify(savedSchedule))
+  window.localStorage.setItem('localSchedule', JSON.stringify(savedSchedule));
 
 });
 
+var retrieveSchedule = JSON.parse(window.localStorage.getItem('localSchedule'));
+
+console.log(retrieveSchedule);
 
 //INSTRUCTIONS GIVEN:
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
