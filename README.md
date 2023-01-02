@@ -8,14 +8,6 @@ This easy-to-use website makes scheduling your work day a breeze. Each hour of t
 
 This is a deployed website, so no installation is required.
 
-## Usage
-
-Website Link:
-
-GitHub Repo Link:
-
-![alt text](assets/images/screenshot.png)
-
 ## License
 
 MIT License
@@ -24,3 +16,15 @@ MIT License
 
 Each hour block can be saved individually to allow maximum specificity.
 The color of each hour block will automatically change with the current time to show past events as gray, current as green, and future as blue.
+
+## Usage
+
+Website Link: https://oconnell-coder.github.io/work-day-scheduler/
+
+GitHub Repo Link: https://github.com/OConnell-Coder/work-day-scheduler
+
+Here is a screenshot of the color-coded time blocks at 11am:
+![screenshot at 11am](./assets/images/screenshot%20of%20color%20coded%20blocks%20at%2011am.png)
+
+Here is a screenshot of the running clock after work hours:
+![screenshot at 11am](./assets/images/screenshot%20of%20running%20clock%20after%20hours.png)
