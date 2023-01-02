@@ -1,11 +1,10 @@
 var buttonsAll = $(".saveBtn")
 var textAreaAll = document.querySelectorAll(".description");
-var savedSchedule = {};
 
 
 function liveClock() {
 var today = dayjs();
-$('#currentDay').text(today.format('dddd, MMM DD, YYYY hh:mm:ss A'));
+$('#currentDay').text(today.format('dddd, MMM DD, YYYY hh:mm:ss a'));
 };
 liveClock();
 setInterval(liveClock, 1000);
@@ -32,22 +31,46 @@ changeColor();
 setInterval(changeColor, 60000);
 
 
-buttonsAll.on("click", function(event) {
+for (var i = 0; i < textAreaAll.length; i++) {
+  buttonsAll.on("click", function(event) {
+    event.preventDefault();
+    var buttonId = this.id;
+    var textEntry = this.previousElementSibling.value;
 
-  event.preventDefault();
+    savedHour = textEntry;
+    window.localStorage.setItem(buttonId, JSON.stringify(savedHour));
+  });
+};
 
-  var buttonId = this.id;
-  var textEntry = this.previousElementSibling.value;
-        
-  savedSchedule["hour"+buttonId] = textEntry;
 
-  window.localStorage.setItem('localSchedule', JSON.stringify(savedSchedule));
+var retrievedNine = JSON.parse(window.localStorage.getItem('btn-nine'));
+textAreaAll[0].textContent = retrievedNine;
 
-});
+var retrievedTen = JSON.parse(window.localStorage.getItem('btn-ten'));
+textAreaAll[1].textContent = retrievedTen;
 
-var retrieveSchedule = JSON.parse(window.localStorage.getItem('localSchedule'));
+var retrievedEleven = JSON.parse(window.localStorage.getItem('btn-eleven'));
+textAreaAll[2].textContent = retrievedEleven;
 
-console.log(retrieveSchedule);
+var retrievedTwelve = JSON.parse(window.localStorage.getItem('btn-twelve'));
+textAreaAll[3].textContent = retrievedTwelve;
+
+var retrievedOne = JSON.parse(window.localStorage.getItem('btn-one'));
+textAreaAll[4].textContent = retrievedOne;
+
+var retrievedTwo = JSON.parse(window.localStorage.getItem('btn-two'));
+textAreaAll[5].textContent = retrievedTwo;
+
+var retrievedThree = JSON.parse(window.localStorage.getItem('btn-three'));
+textAreaAll[6].textContent = retrievedThree;
+
+var retrievedFour = JSON.parse(window.localStorage.getItem('btn-four'));
+textAreaAll[7].textContent = retrievedFour;
+
+var retrievedFive = JSON.parse(window.localStorage.getItem('btn-five'));
+textAreaAll[8].textContent = retrievedFive;
+
+
 
 //INSTRUCTIONS GIVEN:
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
