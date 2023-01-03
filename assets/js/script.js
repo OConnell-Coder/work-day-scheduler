@@ -1,5 +1,5 @@
 var buttonsAll = $(".saveBtn")
-var textAreaAll = document.querySelectorAll(".description");
+var textAreaAll = $(".description");
 
 
 function liveClock() {
@@ -38,37 +38,14 @@ for (var i = 0; i < textAreaAll.length; i++) {
     var textEntry = this.previousElementSibling.value;
 
     savedHour = textEntry;
-    window.localStorage.setItem(buttonId, JSON.stringify(savedHour));
+    window.localStorage.setItem(buttonId, savedHour);
   });
 };
 
 
-var retrievedNine = JSON.parse(window.localStorage.getItem('btn-nine'));
-textAreaAll[0].textContent = retrievedNine;
-
-var retrievedTen = JSON.parse(window.localStorage.getItem('btn-ten'));
-textAreaAll[1].textContent = retrievedTen;
-
-var retrievedEleven = JSON.parse(window.localStorage.getItem('btn-eleven'));
-textAreaAll[2].textContent = retrievedEleven;
-
-var retrievedTwelve = JSON.parse(window.localStorage.getItem('btn-twelve'));
-textAreaAll[3].textContent = retrievedTwelve;
-
-var retrievedOne = JSON.parse(window.localStorage.getItem('btn-one'));
-textAreaAll[4].textContent = retrievedOne;
-
-var retrievedTwo = JSON.parse(window.localStorage.getItem('btn-two'));
-textAreaAll[5].textContent = retrievedTwo;
-
-var retrievedThree = JSON.parse(window.localStorage.getItem('btn-three'));
-textAreaAll[6].textContent = retrievedThree;
-
-var retrievedFour = JSON.parse(window.localStorage.getItem('btn-four'));
-textAreaAll[7].textContent = retrievedFour;
-
-var retrievedFive = JSON.parse(window.localStorage.getItem('btn-five'));
-textAreaAll[8].textContent = retrievedFive;
+textAreaAll.each(function(){
+  $(this).text(localStorage.getItem(($(this).next()).attr("id")))
+});
 
 
 
